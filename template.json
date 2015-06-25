@@ -1,0 +1,18 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "ap-northeast-1",
+    "source_ami": "ami-cbf90ecb",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "packer-ami-{{timestamp}}",
+    "user_data_file": "files/user-data.txt"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "scripts": [
+      "scripts/create-user-dirs.sh",
+      "scripts/install-packages.sh"
+    ]
+  }]
+}
